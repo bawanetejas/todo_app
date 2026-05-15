@@ -7,18 +7,20 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div>
-      <h1>Add todo for the day</h1>
+    <section class="container">
+      <div class="main_container">
+        <h1>Add todo for the day</h1>
 
-      <div>
-        <label htmlFor="todo">Add todo</label>
-        <input id="todo" placeholder="type todo here" />
+        <div class="input_container">
+          <label htmlFor="todo">Add todo : </label>
+          <input id="todo" placeholder="type todo here" />
+        </div>
+        <button id="add_todo">Add</button>
+
+        <!-- render task -->
+        <div id="todos"></div>
       </div>
-      <button id="add-todo">Add</button>
-
-      <!-- render task -->
-      <div id="todos"></div>
-    </div>
+    </section>
     <script src="script.js"></script>
   </body>
 </html>

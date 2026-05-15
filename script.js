@@ -1,7 +1,7 @@
 
 const todo = document.getElementById("todo");
 const todos = document.getElementById("todos");
-const button = document.getElementById("add-todo");
+const button = document.getElementById("add_todo");
 let allTodos = [];
 
 
@@ -32,6 +32,7 @@ function renderTodo() {
             renderTodo();
         })
         const row = document.createElement("div")
+        row.className = "row"
         row.appendChild(p);
         row.appendChild(btn);
         todos.appendChild(row);
