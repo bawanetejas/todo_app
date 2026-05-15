@@ -21,7 +21,7 @@ function renderTodo() {
     todos.innerHTML = "";
     allTodos.forEach((val, i) => {
 
-        const p = document.createElement('p');
+        const p = document.createElement('li');
         p.innerText = val;
         p.id = i;
         const btn = document.createElement("button");
@@ -31,7 +31,7 @@ function renderTodo() {
 
             renderTodo();
         })
-        const row = document.createElement("div")
+        const row = document.createElement("ul")
         row.className = "row"
         row.appendChild(p);
         row.appendChild(btn);
