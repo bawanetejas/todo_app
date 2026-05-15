@@ -3,3 +3,74 @@
   box-sizing: border-box;
   margin: 0px;
 }
+
+.container {
+  width: 100vw;
+  height: 100vh;
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.input_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.input_container label {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: medium;
+}
+
+.input_container input {
+  padding: 8px;
+  background-color: azure;
+  border-radius: 6px;
+}
+
+.input_container input::placeholder {
+  color: rgba(6, 5, 5, 0.637);
+  font-size: medium;
+}
+
+#add_todo {
+  padding: 0.6rem 2rem;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #000;
+}
+
+.main_container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.todos {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.row p {
+  color: antiquewhite;
+  font-size: 1.2rem;
+}
+
+.row button {
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
