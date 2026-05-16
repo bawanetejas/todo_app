@@ -74,3 +74,12 @@
   border-radius: 4px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+.btnContainer {
+  display: flex;
+  align-items: center;
+  justify-self: center;
+  gap: 4px;
+}
+#checkbox {
+  height: 2rem;
+}

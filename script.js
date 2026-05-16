@@ -12,7 +12,7 @@ function addTodo() {
     var todoValue = todo.value;
     if (todoValue == '') return;
     todo.value = ''
-    allTodos.push(todoValue);
+    allTodos.push({ todoValue, flag: false });
     addTodoDb(allTodos);
     renderTodo();
 
@@ -22,11 +22,11 @@ renderTodo()
 
 function renderTodo() {
     todos.innerHTML = "";
-    const allTodos = JSON.parse(localStorage.getItem("allTodos"))
+    allTodos = JSON.parse(localStorage.getItem("allTodos"))
     allTodos.forEach((val, i) => {
 
         const p = document.createElement('li');
-        p.innerText = val;
+        p.innerText = val.todoValue;
         p.id = i;
         const btn = document.createElement("button");
         btn.innerText = "delete"
@@ -40,11 +40,28 @@ function renderTodo() {
         editBtn.addEventListener("click", () => editTodo(i))
         const row = document.createElement("ul")
         const btnContainer = document.createElement('div')
+        btnContainer.className = "btnContainer"
+        const checkbox = document.createElement('input')
+        checkbox.id = 'checkbox'
+        checkbox.type = 'checkbox'
+        checkbox.checked = val.flag
+        checkbox.addEventListener('change', () => {
+            val.flag = checkbox.checked;
+            console.log(val)
+            allTodos[i].flag = val.flag;
+            addTodoDb(allTodos)
+        })
+
         row.className = "row"
         row.appendChild(p);
+
         btnContainer.appendChild(editBtn)
         btnContainer.appendChild(btn);
-        row.appendChild(btnContainer)
+        btnContainer.appendChild(checkbox)
+
+        row.appendChild(btnContainer);
+
+        //drag and drop
         row.draggable = true;
         row.addEventListener("dragstart", () => {
             dragIndex = i;
@@ -67,8 +84,9 @@ function renderTodo() {
 function editTodo(i) {
     const val = prompt("Edit todo")
     if (!val || val == "") return
-    allTodos[i] = val
-    console.log(allTodos)
+
+    allTodos[i].todoValue = val
+
     addTodoDb(allTodos);
     renderTodo();
 }
@@ -76,3 +94,7 @@ function editTodo(i) {
 function addTodoDb(allTodos) {
     localStorage.setItem("allTodos", JSON.stringify(allTodos))
 }
+
+// done task
+// rmaining task
+// all task
