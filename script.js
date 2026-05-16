@@ -12,13 +12,16 @@ function addTodo() {
     if (todoValue == '') return;
     todo.value = ''
     allTodos.push(todoValue);
+    addTodoDb(allTodos);
     renderTodo();
 
 }
 
+renderTodo()
 
 function renderTodo() {
     todos.innerHTML = "";
+    const allTodos = JSON.parse(localStorage.getItem("allTodos"))
     allTodos.forEach((val, i) => {
 
         const p = document.createElement('li');
@@ -28,16 +31,19 @@ function renderTodo() {
         btn.innerText = "delete"
         btn.addEventListener("click", () => {
             allTodos.splice(i, 1);
+            addTodoDb(allTodos);
             renderTodo();
         })
         const editBtn = document.createElement("button")
         editBtn.innerText = "Edit";
         editBtn.addEventListener("click", () => editTodo(i))
         const row = document.createElement("ul")
+        const btnContainer = document.createElement('div')
         row.className = "row"
         row.appendChild(p);
-        row.appendChild(editBtn)
-        row.appendChild(btn);
+        btnContainer.appendChild(editBtn)
+        btnContainer.appendChild(btn);
+        row.appendChild(btnContainer)
         todos.appendChild(row);
     })
 
@@ -47,5 +53,11 @@ function editTodo(i) {
     const val = prompt("Edit todo")
     if (!val || val == "") return
     allTodos[i] = val
+    console.log(allTodos)
+    addTodoDb(allTodos);
     renderTodo();
+}
+
+function addTodoDb(allTodos) {
+    localStorage.setItem("allTodos", JSON.stringify(allTodos))
 }
