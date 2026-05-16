@@ -55,7 +55,7 @@ function renderTodo() {
         row.addEventListener("drop", () => {
             const dragItem = allTodos[dragIndex];
             allTodos.splice(dragIndex, 1);
-            allTodos.splice(0, 0, dragItem);
+            allTodos.splice(i, 0, dragItem);
             addTodoDb(allTodos)
             renderTodo();
         })
