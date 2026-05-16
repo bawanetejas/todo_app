@@ -3,6 +3,7 @@ const todo = document.getElementById("todo");
 const todos = document.getElementById("todos");
 const button = document.getElementById("add_todo");
 let allTodos = [];
+let dragIndex = null;
 
 
 button.addEventListener("click", addTodo)
@@ -44,6 +45,20 @@ function renderTodo() {
         btnContainer.appendChild(editBtn)
         btnContainer.appendChild(btn);
         row.appendChild(btnContainer)
+        row.draggable = true;
+        row.addEventListener("dragstart", () => {
+            dragIndex = i;
+        })
+        row.addEventListener("dragover", (e) => {
+            e.preventDefault();
+        })
+        row.addEventListener("drop", () => {
+            const dragItem = allTodos[dragIndex];
+            allTodos.splice(dragIndex, 1);
+            allTodos.splice(0, 0, dragItem);
+            addTodoDb(allTodos)
+            renderTodo();
+        })
         todos.appendChild(row);
     })
 
